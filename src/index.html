@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+  		<meta charset="utf-8">
+  		<title>Flowdan</title>
+  		<base href="/">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="icon" type="image/x-icon" href="favicon.ico">  
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	</head>
+	<body data-ng-app="flowdan" data-ng-controller="listingCtrl" data-ng-cloak>
+
+	<h1>Flowdan's Raid Check</h1>
+	<p>For now, this is hardcoded to pull the following:</p>
+	<p>
+		Guild: <a href="http://us.battle.net/wow/en/guild/stormreaver/Flowdans_Lounge/">Flowdans Lounge</a> <br />
+		Ranks: > Trial <br />
+		There are no other restrictions. <br />
+		Remember, this is what the armory shows, not necessarily what gear will be worn to the raid.
+	</p>
+
+	<button data-ng-click="pullRoster()">Refresh</button>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Enchant Status</th>
+				<th>Gem Status</th>
+				<th>Notes</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="toon in roster">
+				<td>
+					{{ranks[toon.rank]}}&nbsp;-&nbsp;<a target="_blank" href="http://us.battle.net/wow/en/character/stormreaver/{{toon.name}}/advanced">{{toon.name}}</a>
+				</td>
+				<td data-ng-if="toon.processed && toon.missingEnchants.length <= 0">None Missing</td>
+				<td data-ng-if="toon.processed && toon.missingEnchants.length > 0">
+					<span data-ng-repeat="slot in toon.missingEnchants">{{slot}}<br /></span>
+				</td>
+				<td data-ng-if="toon.processed && toon.missingGems.length <= 0">None Missing</td>
+				<td data-ng-if="toon.processed && toon.missingGems.length > 0">
+					<span data-ng-repeat="slot in toon.missingGems">{{slot}}<br /></span>
+				</td>
+				<td data-ng-if="toon.processed && !toon.showRaw">
+					<a href="#" data-ng-click="toon.showRaw = true">Show Raw Return</a>
+				</td>
+				<td data-ng-if="toon.processed && toon.showRaw">
+					{{toon.raw}}
+				</td>
+				<td data-ng-if="!toon.processed" colspan="3">
+					Pulling data, please wait
+				</td>
+			</tr>
+		</tbody>
+	</table>
+		<footer>Version: {{version}}</footer>
+	</body>
+	<script src="./content/compiled/app.comp.js"></script>
+</html>
