@@ -1,0 +1,13 @@
+body {
+	margin: auto;
+	margin-top: 25px;
+	width: 80%;
+}
+
+tr.good {
+	background-color: LightGreen;
+}
+
+tr.bad {
+	background-color: IndianRed;
+}

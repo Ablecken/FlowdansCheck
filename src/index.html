@@ -7,6 +7,7 @@
   		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<link rel="icon" type="image/x-icon" href="favicon.ico">  
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  		<link rel="stylesheet" href="./content/css/main.css">
 	</head>
 	<body data-ng-app="flowdan" data-ng-controller="listingCtrl" data-ng-cloak>
 
@@ -14,7 +15,7 @@
 	<p>For now, this is hardcoded to pull the following:</p>
 	<p>
 		Guild: <a href="http://us.battle.net/wow/en/guild/stormreaver/Flowdans_Lounge/">Flowdans Lounge</a> <br />
-		Ranks: > Trial <br />
+		Ranks: >= Trial <br />
 		There are no other restrictions. <br />
 		Remember, this is what the armory shows, not necessarily what gear will be worn to the raid.
 	</p>
@@ -31,7 +32,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="toon in roster">
+			<tr data-ng-repeat="toon in roster" data-ng-class="(toon.missingEnchants.length <= 0 && toon.missingGems.length <= 0) ? 'good' : 'bad'">
 				<td>
 					{{ranks[toon.rank]}}&nbsp;-&nbsp;<a target="_blank" href="http://us.battle.net/wow/en/character/stormreaver/{{toon.name}}/advanced">{{toon.name}}</a>
 				</td>
@@ -47,7 +48,8 @@
 					<a href="#" data-ng-click="toon.showRaw = true">Show Raw Return</a>
 				</td>
 				<td data-ng-if="toon.processed && toon.showRaw">
-					{{toon.raw}}
+					<a href="#" data-ng-click="toon.showRaw = false">Hide Raw Return</a><br />
+					{{toon.raw | json}}
 				</td>
 				<td data-ng-if="!toon.processed" colspan="3">
 					Pulling data, please wait
@@ -55,7 +57,7 @@
 			</tr>
 		</tbody>
 	</table>
-		<footer>Version: {{version}}</footer>
+		<footer>Version: {{version}} | Made With: {{madeWith}}</footer>
 	</body>
 	<script src="./content/compiled/app.comp.js"></script>
 </html>

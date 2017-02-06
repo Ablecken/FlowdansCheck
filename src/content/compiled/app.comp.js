@@ -43225,15 +43225,14 @@ const angular = require('angular');
 
 angular.module('flowdan')
 	.controller('listingCtrl', function($rootScope, $scope, $queue, $sce, BattleApiService) {
-		$scope.ranks = ['0', '1', '2', '3', '4', '5', '6', '7'];
+		$scope.ranks = ['GM', 'Officer', 'Raider', 'Banker', 'Trial', '5', '6', '7'];
 		$scope.roster = [];
-		//const gearSlots = ['head', 'neck', 'shoulder', 'back', 'chest', 'shirt', 'tabard', 'wrist', 'hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'mainHand', 'offHand'];
 		const gearEnchantSlots = ['neck', 'back', 'finger1', 'finger2'];
 
 		const processQueueItem = function(toon) {
 			BattleApiService.pullToonGear(toon.name, function(ret) {
 				const items = ret.items;
-				toon.raw = JSON.stringify(ret);
+				toon.raw = ret;
 				angular.forEach(items, function(gear, slot) {
 					if (gear.hasOwnProperty('id')) {
 						// enchant
@@ -43270,8 +43269,8 @@ angular
 	.module('flowdan', ['flowdan.services', 'ngQueue'])
 	.run(function($rootScope) {
 		// simple app
-		$rootScope.version = '0.1.0';
-		$rootScope.madeWith = '';
+		$rootScope.version = '0.2.0';
+		$rootScope.madeWith = 'NodeJs, AngularJS running on Apache2';
 		$rootScope.loading = true;
 	});
 },{"angular":2}],7:[function(require,module,exports){
