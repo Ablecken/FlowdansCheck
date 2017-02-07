@@ -8,6 +8,15 @@
   		<link rel="icon" type="image/x-icon" href="favicon.ico">  
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   		<link rel="stylesheet" href="./content/css/main.css">
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-91560439-1', 'auto');
+			ga('send', 'pageview');
+		</script>
 	</head>
 	<body data-ng-app="flowdan" data-ng-controller="listingCtrl" data-ng-cloak>
 
@@ -20,7 +29,7 @@
 		Remember, this is what the armory shows, not necessarily what gear will be worn to the raid.
 	</p>
 
-	<button data-ng-click="pullRoster()">Refresh</button>
+	<button data-ng-click="pullRoster()" onclick="ga('send', 'event', 'roster', 'refresh');">Refresh</button>
 
 	<table class="table table-bordered">
 		<thead>
