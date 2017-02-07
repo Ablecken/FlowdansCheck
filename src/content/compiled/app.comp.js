@@ -43232,7 +43232,7 @@ angular.module('flowdan')
 		const processQueueItem = function(toon) {
 			BattleApiService.pullToonGear(toon.name, function(ret) {
 				const items = ret.items;
-				toon.raw = ret;
+				toon.gearLevel = items.averageItemLevel;
 				angular.forEach(items, function(gear, slot) {
 					if (gear.hasOwnProperty('id')) {
 						// enchant
@@ -43303,8 +43303,7 @@ angular.module('flowdan.services', [])
 									missingGems: [],
 									legendaryCount: 0,
 									processed: false,
-									raw: '',
-									showRaw: false
+									gearLevel: 0
 								};
 							});
 						cb(roster);

@@ -37,7 +37,7 @@
 				<th>Name</th>
 				<th>Enchant Status</th>
 				<th>Gem Status</th>
-				<th>Notes</th>
+				<th>Gear iLvl</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -53,12 +53,8 @@
 				<td data-ng-if="toon.processed && toon.missingGems.length > 0">
 					<span data-ng-repeat="slot in toon.missingGems">{{slot}}<br /></span>
 				</td>
-				<td data-ng-if="toon.processed && !toon.showRaw">
-					<a href="#" data-ng-click="toon.showRaw = true">Show Raw Return</a>
-				</td>
-				<td data-ng-if="toon.processed && toon.showRaw">
-					<a href="#" data-ng-click="toon.showRaw = false">Hide Raw Return</a><br />
-					{{toon.raw | json}}
+				<td data-ng-if="toon.processed">
+					ILvl: {{toon.gearLevel}}
 				</td>
 				<td data-ng-if="!toon.processed" colspan="3">
 					Pulling data, please wait

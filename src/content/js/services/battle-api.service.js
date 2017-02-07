@@ -27,8 +27,7 @@ angular.module('flowdan.services', [])
 									missingGems: [],
 									legendaryCount: 0,
 									processed: false,
-									raw: '',
-									showRaw: false
+									gearLevel: 0
 								};
 							});
 						cb(roster);
